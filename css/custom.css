@@ -6,13 +6,16 @@
 
 body, section {			/* Change width and height to own preferences */
 	width: 500px;
-	height: 400px;
+	height: 500px;
 	overflow-x: hidden;
 }
 
 /* Basic style tweaks */
 section { padding: 5px;}
 .navbar { margin-bottom: 2px; }
+.section { margin-bottom: 0px; }
+.section .form-group { margin-bottom: 1px; }
+.title {margin-top: 5px;}
 
 /* Scroll Bar */
 ::-webkit-scrollbar { width: 6px; }
