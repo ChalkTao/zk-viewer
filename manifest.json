@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+	"name": "ZK-viewer",
+	"description": "Tool for quick visiting xiaomi zookeeper config",
+	"version": "1.0",
+	"permissions": [
+		"storage", "http://zkview.d.xiaomi.net/"
+	],
+	"browser_action": {
+		"default_icon": "img/icon.png",
+		"default_popup": "popup.html"
+	},
+	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
+}

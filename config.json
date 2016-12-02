@@ -1,0 +1,9 @@
+{
+	"env": ["staging", "lugu", "c3", "aws_sgp"],
+	"default_path": {
+		"sdk": "/services/com.xiaomi.miui.ad.thrift.service.MiuiAdQueryService/AppConfig",
+		"max": "/services/com.xiaomi.miui.ad.exchange.thrift.bid.service.MiuiAdExchangeBidService/AppConfig",
+		"query": "/services/com.xiaomi.miui.ad.thrift.service.MiuiAdQueryService/AppConfig",
+		"retrieve": "/services/com.xiaomi.miui.ad.core.common.model.adretrieve.MiuiAdRetrieveService/AppConfig"
+	}
+}
