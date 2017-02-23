@@ -14,43 +14,66 @@
 </head>
 
 <body ng-controller="ZKViewController">
-<div class="section">
-    <form ng-submit="search()">
-        <div class="form-group">
-            <label class="col-xs-2 title">Path</label>
-            <div class="input-group col-xs-10">
-                <input type="text" class="form-control" placeholder="path" ng-model="this.path" required>
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                {{path_tag}} <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li ng-repeat="item in default_path"><a ng-click="select_path(item)">{{item}}</a></li>
-              </ul>
-            </span>
+<div >
+    <div class="section">
+        <form ng-submit="search()">
+            <div class="form-group">
+                <label class="col-xs-2 title">Path</label>
+                <div class="input-group col-xs-10">
+                    <input type="text" class="form-control" placeholder="path" ng-model="this.path" required>
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                    {{path_tag}} <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li ng-repeat="item in default_path"><a ng-click="select_path(item)">{{item}}</a></li>
+                  </ul>
+                </span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-xs-2 title">Key</label>
-            <div class="input-group col-xs-10">
-                <input type="text" class="form-control" placeholder="key" name="path" ng-model="key" required>
-                <span class="input-group-btn">
-					<button type="submit" class="btn btn-success" >Search</button>
-				</span>
+            <div class="form-group">
+                <label class="col-xs-2 title">Key</label>
+                <div class="input-group col-xs-10">
+                    <input type="text" class="form-control" placeholder="key" name="path" ng-model="key" required autocomplete="off">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-success" >Search</button>
+                    </span>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+    <ul class="nav nav-tabs">
+        <li ng-repeat="(index, item) in env_list" ng-class="{'active': cur_env===index}">
+            <a ng-click="change_env(index)">{{item}}</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active">
+            <div ng-repeat="(index, item) in result_list track by $index" class="tab-pane-item">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-default tab-pane-item-title" ng-click="show_content(item)">{{item.key}}</button>
+                  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <!-- <li><a ng-click="copy(index)">复制到剪切板</a></li> -->
+                    <li><a ng-click="open()">在页面浏览</a></li>
+                    <li><a ng-show="item.canExpend" ng-click="change(item)">{{item.expend?'查看原值':'分行展示'}}</a></li>
+                  </ul>
+                </div>
+                <table class="table table-bordered tab-pane-item-content" ng-show="item.show">
+                  <tbody>
+                    <input type="text" id="{{'item_' + index}}" value="{{item.raw_value}}" hidden="true">
+                    <tr ng-repeat="line in item.value track by $index">
+                      <td>{{line}}</td>
+                    </tr>
+                  </tbody>
+                </table>
 
-<ul class="nav nav-tabs">
-    <li ng-repeat="(index, item) in env_list" ng-class="{'active': cur_env===index}">
-        <a ng-click="change_env(index)">{{item}}</a>
-    </li>
-</ul>
-<div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade in active">
-        <p>1</p>
+            </div>
+        </div>
     </div>
 </div>
 </body>

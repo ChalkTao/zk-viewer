@@ -10,5 +10,6 @@
 		"default_icon": "img/icon.png",
 		"default_popup": "popup.html"
 	},
+	"permissions": ["tabs", "clipboardWrite"],
 	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }
